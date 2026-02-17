@@ -1,0 +1,59 @@
+[build-system]
+requires = ["uv_build>=0.8.3,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "panda"
+module-root = ""
+
+[tool.uv]
+package = true
+python-preference = "managed"
+
+[project]
+name = "panda"
+description = "Patched Attention for Nonlinear Dynamics"
+version = "0.1.0"
+readme = "README.md"
+license = { text = "MIT" }  # SPDX license identifier
+requires-python = ">=3.10"
+dependencies = [
+    "hydra-core",
+    "numpy<2",
+    "torch",
+    "transformers==4.40.2",
+    "accelerate",
+    "dysts[numba,extra] @ git+https://github.com/williamgilpin/dysts@master",
+    "gluonts[arrow]",
+    "scipy",
+    "scikit-learn",
+    "tqdm",
+    "wandb",
+    "matplotlib",
+    "statsmodels",
+    "pandas",
+    "orjson",
+    "huggingface_hub>=0.19",
+    "safetensors>=0.4"
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.13.0",
+    "ipykernel",
+    "nbstripout",
+]
+pde-benchmark = ["neuraloperator", "deepxde"]
+tsfm-benchmark = ["chronos-forecasting", "timesfm"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.extend-per-file-ignores]
+"__init__.py" = ["E402", "F401", "F403", "E501"]
+
+[tool.ruff.lint]
+extend-select = ["UP"]
+ignore = [
+    "F722"
+]
