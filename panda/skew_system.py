@@ -57,6 +57,7 @@ class SkewProduct(DynSys):
                 "response": response,
                 "driver_dim": driver.dimension,
                 "response_dim": response.dimension,
+                "initial_conditions": np.zeros(driver.dimension + response.dimension)
             },
             **kwargs,
         )
